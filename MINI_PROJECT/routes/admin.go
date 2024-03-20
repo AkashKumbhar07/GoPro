@@ -7,12 +7,7 @@ import (
 
 func AdminRoutes(app *fiber.App) {
 
-	admin := app.Group("/admin")
-	// admin.Get("/GetCategories")
-	admin.Post("/CreateCategory", controllers.AddCategory)
-	admin.Put("/UpdateCategory", controllers.EditCategory)
-	admin.Delete("/DeleteCategory", controllers.DeleteCategory)
-	admin.Get("/GetCategories",controllers.GetCategories)
-	admin.Post("/addProduct", controllers.AddProduct)
+	user := app.Group("/admin")
+	user.Get("/GetCategories")
 
 }
