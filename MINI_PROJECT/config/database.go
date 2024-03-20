@@ -9,6 +9,8 @@ import (
 	"gorm.io/gorm"
 )
 
+var Db *gorm.DB
+
 func DB_Connect() (*gorm.DB, error) {
 
 	config := &storage.Config{
@@ -20,18 +22,18 @@ func DB_Connect() (*gorm.DB, error) {
 		SSLModes: os.Getenv("DB_SSLMODE "),
 	}
 
-	db, err := storage.NewConnection(config)
+	Db, err := storage.NewConnection(config)
 	if err != nil {
 		log.Fatal("FAILED TO CREATE NEW CONNECTION")
 	}
-	db.AutoMigrate(&models.Users{})
-	db.AutoMigrate(&models.Address{})
-	db.AutoMigrate(&models.Categories{})
-	db.AutoMigrate(&models.Products{})
-	db.AutoMigrate(&models.Payments{})
-	db.AutoMigrate(&models.Orders{})
-	db.AutoMigrate(&models.Carts{})
+	Db.AutoMigrate(&models.Users{})
+	Db.AutoMigrate(&models.Address{})
+	Db.AutoMigrate(&models.Categories{})
+	Db.AutoMigrate(&models.Products{})
+	Db.AutoMigrate(&models.Payments{})
+	Db.AutoMigrate(&models.Orders{})
+	Db.AutoMigrate(&models.Carts{})
 
-	return db, nil
+	return Db, nil
 
 }
